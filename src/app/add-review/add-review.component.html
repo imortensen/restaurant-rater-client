@@ -1,0 +1,16 @@
+<form [formGroup]="addReviewForm" (ngSubmit)="add(addReviewForm.value)">
+      <h4>Add Review</h4>
+      <div class="form-group">
+        <label for="stars">Stars</label>
+        <input id="stars"  type="number" min="0" max="5" class="form-control" formControlName="stars">
+      </div>
+
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea type="text" class="form-control" id="comment" rows="3" formControlName="comment"></textarea>
+      </div>
+
+    <button type="submit" class="btn btn-primary btn-sm">Add</button>
+
+</form>
+<!-- [(ngModel)]="currentUserReview" -->

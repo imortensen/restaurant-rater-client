@@ -1,0 +1,9 @@
+.list-group, .form-group{
+    max-width: 400px;
+}
+.list-group-item{
+color:#4931EB;
+}
+/* a:hover {
+    background-color:#35E8D7;
+  } */

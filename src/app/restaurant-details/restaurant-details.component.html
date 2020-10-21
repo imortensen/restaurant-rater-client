@@ -1,0 +1,25 @@
+<div *ngIf="restaurant">
+	<h2> {{restaurant.name}} </h2>
+    <bar-rating [(rate)]="restaurant.stars" [max]="5" [theme]="'default'" [title]="restaurant.stars" [readOnly]="true"></bar-rating>
+    <!-- <p> Review Count: {{restaurant.ratings}} </p> -->
+
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        All Reviews ({{restaurant.reviews}})
+    </button>
+    <div *ngFor="let review of reviews" class="list-group collapse" id="collapseExample">
+        <li class="list-group-item list-group-item-action flex-column align-items-start active card card-body">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{review.stars}}</h5>
+              <small>{{review.createdDate | date:"MM/dd/yy"}}</small>
+            </div>
+            <p class="mb-1">{{review.comment}}</p>
+            <small>{{review.reviewer}}</small>
+        </li>
+    </div>
+    <p></p>
+    <!-- <button type="button" class="btn btn-primary btn-sm" (click)="goBack()">Back to List</button> -->
+</div>
+<!-- <button type="button" class="btn btn-primary btn-sm" routerLink="/add-review">Add Review</button> -->
+
+<!-- <app-add-review *ngIf="currentUserReview" [restaurant]="restaurant"></app-add-review> -->
+<app-add-review [restaurant]="restaurant" [currentUserReview]='currentUserReview'></app-add-review>

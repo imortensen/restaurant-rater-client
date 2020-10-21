@@ -1,0 +1,15 @@
+<h2>Restaurants</h2>
+<br>
+
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" autocomplete="off" />
+</div>
+
+<div class="list-group">
+  <a *ngFor="let restaurant of restaurants | filter:searchText" class="list-group-item list-group-item-action" routerLink="/restaurant/{{restaurant._id}}">
+  {{ restaurant.name }}
+  </a>
+</div>
+
+<br>
+<button type="button" class="btn btn-primary btn-sm" routerLink="/add-restaurant">Add Restaurant</button>

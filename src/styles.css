@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-bar-rating/themes/br-default-theme';
+
+
+.body_minus_nav {
+    margin: 2em;
+}
+
+.btn-primary{
+  background-color: #47A0FF;
+  border-color: #47A0FF;
+}
+
+.btn-primary:hover{
+    background-color: #4931EB;
+    border-color: #4931EB;
+}
+
+input[type=text]:focus:not([readonly]) {
+  border: 1px solid #47A0FF;
+  box-shadow: 0 0 0 1.5px #47A0FF;
+} 
+
+input[type=number]:focus:not([readonly]) {
+  border: 1px solid #47A0FF;
+  box-shadow: 0 0 0 1.5px #47A0FF;
+} 
+
+textarea[type=text]:focus:not([readonly]) {
+  border: 1px solid #47A0FF;
+  box-shadow: 0 0 0 1.5px #47A0FF;
+} 
+
+a {
+  cursor: pointer;
+}
