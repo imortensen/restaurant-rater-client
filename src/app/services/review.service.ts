@@ -58,16 +58,26 @@ export class ReviewService {
     );
   }
 
+  getMyReviews(): Observable<Review[]> {
+    const url = `${this.reviewsUrl}/myreviews`;
+    console.log("review url: " + url)
+    return this.http.get<Review[]>(url).pipe(
+      catchError(this.handleError<Review[]>(`getMyReviews`))
+    );
+  }
+
   addReview (review: Review): Observable<Review> {
-    const url = `${this.reviewsUrl}/add-review`;
+    const url = `${this.reviewsUrl}`;
     return this.http.post<Review>(url, review, this.httpOptions).pipe(
       //tap((newRestaurant: Restaurant) => this.log(`added restaurant w/ id=${newRestaurant.id}`)),
       catchError(this.handleError<Review>('addReview'))
     );
   }
 
-  updateReview (review: Review): Observable<any> {
-    return this.http.put(this.reviewsUrl, review, this.httpOptions).pipe(
+  updateReview (id: string, review: Review): Observable<any> {
+    console.log('update review id: ' + id)
+    const url = `${this.reviewsUrl}/${id}`;
+    return this.http.put(url, review, this.httpOptions).pipe(
       //tap(_ => this.log(`updated restaurant id=${restaurant.id}`)),
       catchError(this.handleError<any>('updateReview'))
     );

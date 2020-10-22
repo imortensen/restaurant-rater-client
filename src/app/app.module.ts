@@ -20,6 +20,9 @@ import { AlertComponent } from './alert/alert.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { AddReviewComponent } from './add-review/add-review.component';
+import { MyReviewsComponent, NgbdSortableHeader } from './my-reviews/my-reviews.component';
+import { CommonModule } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,11 +36,15 @@ import { AddReviewComponent } from './add-review/add-review.component';
     RegisterComponent,
     LoginComponent,
     AlertComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    MyReviewsComponent,
+    NgbdSortableHeader,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    CommonModule,
+    NgbModule,
     FontAwesomeModule,
     AppRoutingModule,
     FormsModule,

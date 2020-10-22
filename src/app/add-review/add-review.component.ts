@@ -46,12 +46,19 @@ export class AddReviewComponent implements OnInit{
   }
 
   add(): void {
+    const id = this.currentUserReview._id
     let reviewer = this.authenticationService.currentUserValue;
     let restaurant = this.restaurant;
     let stars = this.addReviewForm.get('stars').value;
     let comment = this.addReviewForm.get('comment').value;
-    this.service.addReview({ restaurant, stars, comment, reviewer } as Review)
+    if(!this.currentUserReview){
+      this.service.addReview({ restaurant, stars, comment, reviewer } as Review)
       .subscribe(() => this.goBack());
+    } else {
+      this.service.updateReview(id, { restaurant, stars, comment} as Review)
+      .subscribe(() => this.goBack());  
+    }
+    
   }
 
   goBack() {

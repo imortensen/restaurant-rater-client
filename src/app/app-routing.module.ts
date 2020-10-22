@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { AddReviewComponent } from './add-review/add-review.component';
+import { MyReviewsComponent } from './my-reviews/my-reviews.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'restaurant-list', component: RestaurantListComponent, canActivate: [AuthGuard] },
   { path: 'restaurant/:id', component: RestaurantDetailsComponent, canActivate: [AuthGuard] },
   { path: 'add-restaurant', component: AddRestaurantComponent, canActivate: [AuthGuard] },
+  { path: 'my-reviews', component: MyReviewsComponent, canActivate: [AuthGuard] },
   { path: 'add-review', component: AddReviewComponent, canActivate: [AuthGuard] },
   { 
     path: '',

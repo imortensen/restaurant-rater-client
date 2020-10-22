@@ -1,0 +1,23 @@
+<h2>My Reviews</h2>
+<br>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" sortable="restaurant" (sort)="onSort($event)">Restaurant</th>
+      <th scope="col" sortable="stars" (sort)="onSort($event)">Stars</th>
+      <th scope="col">Comment</th>
+      <th scope="col" sortable="lastUpdated" (sort)="onSort($event)">Last Updated</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let review of reviews">
+    <tr>
+      <td>{{review.restaurant.name}}</td>
+      <td>{{review.stars}}</td>
+      <td>{{review.comment}}</td>
+      <td>{{review.updatedAt | date: "MM/dd/yy"}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
