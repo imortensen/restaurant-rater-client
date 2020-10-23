@@ -1,23 +1,26 @@
 <h2>My Reviews</h2>
 <br>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" sortable="restaurant" (sort)="onSort($event)">Restaurant</th>
-      <th scope="col" sortable="stars" (sort)="onSort($event)">Stars</th>
-      <th scope="col">Comment</th>
-      <th scope="col" sortable="lastUpdated" (sort)="onSort($event)">Last Updated</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let review of reviews">
-    <tr>
-      <td>{{review.restaurant.name}}</td>
-      <td>{{review.stars}}</td>
-      <td>{{review.comment}}</td>
-      <td>{{review.updatedAt | date: "MM/dd/yy"}}</td>
-    </tr>
-  </tbody>
-</table>
+<!-- <table class="table" matSort (matSortChange)="sortData($event)"> -->
+  <div class="card">
+    <table matSort (matSortChange)="sortData($event)" class="table">
+    <thead class="table-light">
+      <tr>
+        <th mat-sort-header="restaurant">Restaurant</th>
+        <th mat-sort-header="stars">Stars</th>
+        <th scope="col">Comment</th>
+        <th mat-sort-header="updatedAt">Last Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let review of sortedReviews" class="table-light">
+        <td><a routerLink="/restaurant/{{review.restaurantId}}">{{review.restaurant}}</a></td>
+        <td>{{review.stars}}</td>
+        <td>{{review.comment}}</td>
+        <td>{{review.updatedAt | date: "MM/dd/yy"}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <br>

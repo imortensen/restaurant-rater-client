@@ -1,6 +1,6 @@
 export class Restaurant {
     _id: string;
     name: string;
-    ratings: number;
+    reviews: number;
     stars: number;
 }

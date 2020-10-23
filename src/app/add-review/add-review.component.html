@@ -1,4 +1,4 @@
-<form [formGroup]="addReviewForm" (ngSubmit)="add(addReviewForm.value)">
+<form [formGroup]="addReviewForm" (ngSubmit)="add()">
       <h4 *ngIf="!currentUserReview">Add Review</h4>
       <h4 *ngIf="currentUserReview">My Review</h4>
       <div class="form-group">

@@ -20,9 +20,11 @@ import { AlertComponent } from './alert/alert.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { AddReviewComponent } from './add-review/add-review.component';
-import { MyReviewsComponent, NgbdSortableHeader } from './my-reviews/my-reviews.component';
+import { MyReviewsComponent } from './my-reviews/my-reviews.component';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     AlertComponent,
     AddReviewComponent,
-    MyReviewsComponent,
-    NgbdSortableHeader,
+    MyReviewsComponent
   ],
   imports: [
     HttpClientModule,
@@ -50,7 +51,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,
-    BarRatingModule
+    BarRatingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
