@@ -26,6 +26,9 @@ export class AddReviewComponent implements OnInit{
       stars: null,
       comment: ''
     });
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+   };
   }
 
   ngOnInit() {
@@ -46,22 +49,36 @@ export class AddReviewComponent implements OnInit{
   }
 
   add(): void {
-    const id = this.currentUserReview._id
-    let reviewer = this.authenticationService.currentUserValue;
     let restaurant = this.restaurant;
     let stars = this.addReviewForm.get('stars').value;
     let comment = this.addReviewForm.get('comment').value;
     if(!this.currentUserReview){
-      this.service.addReview({ restaurant, stars, comment, reviewer } as Review)
-      .subscribe(() => this.goBack());
+      this.service.addReview({ restaurant, stars, comment } as Review)
+      .subscribe(() => {
+         // trick the Router into believing it's last link wasn't previously loaded
+         this.router.navigated = false;
+         this.router.navigate([`restaurant/${this.restaurant._id}`]);
+      });
     } else {
+      const id = this.currentUserReview._id
       this.service.updateReview(id, { restaurant, stars, comment} as Review)
-      .subscribe(() => this.goBack());  
+      .subscribe();  
     }
     
   }
 
+  remove(): void {
+    const id = this.currentUserReview._id
+    console.log('id for remove: ' + this.restaurant._id)
+    this.service.removeReview(id).subscribe(() => {
+         // trick the Router into believing it's last link wasn't previously loaded
+         this.router.navigated = false;
+         this.router.navigate([`restaurant/${this.restaurant._id}`]);
+      });
+  }
+
   goBack() {
+    console.log('go back')
     this.router.navigate(['/restaurant-list']);
   }
 

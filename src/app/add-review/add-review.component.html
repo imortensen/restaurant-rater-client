@@ -13,7 +13,7 @@
 
     <button type="submit" class="btn btn-primary btn-sm" *ngIf="!currentUserReview">Add</button>
     <button type="submit" class="btn btn-primary btn-sm" *ngIf="currentUserReview">Update</button>
-    <button type="submit" class="btn btn-primary btn-sm" *ngIf="currentUserReview">Remove</button>
+    <button type="button" (click)="remove()" class="btn btn-danger btn-sm" *ngIf="currentUserReview">Remove</button>
 
 </form>
 <!-- [(ngModel)]="currentUserReview" -->

@@ -66,21 +66,41 @@ export class ReviewService {
     );
   }
 
-  addReview (review: Review): Observable<Review> {
+  addReview (review: Review): Observable<any> {
     const url = `${this.reviewsUrl}`;
+    console.log('review url: ' + url);
+    console.log('review: ' + JSON.stringify(review));
+    // const newReview = {
+    //   restaurant: review.restaurant._id,
+    //   stars: review.stars,
+    //   comment: review.comment
+    // }
+    console.log('new review: ' + JSON.stringify(review));
     return this.http.post<Review>(url, review, this.httpOptions).pipe(
-      //tap((newRestaurant: Restaurant) => this.log(`added restaurant w/ id=${newRestaurant.id}`)),
+      tap((review: Review) => console.log(`added review w/ _id=${review._id}`)),
       catchError(this.handleError<Review>('addReview'))
     );
+    // return this.http.post<any>(url, newReview, this.httpOptions);
   }
 
   updateReview (id: string, review: Review): Observable<any> {
-    console.log('update review id: ' + id)
+    console.log('update review service')
     const url = `${this.reviewsUrl}/${id}`;
     return this.http.put(url, review, this.httpOptions).pipe(
       //tap(_ => this.log(`updated restaurant id=${restaurant.id}`)),
       catchError(this.handleError<any>('updateReview'))
     );
+  }
+
+  removeReview (id: string): Observable<any> {
+    const url = `${this.reviewsUrl}/${id}`;
+    console.log('remove url: ' + url)
+    // return this.http.delete(url, this.httpOptions).pipe(
+    //   //tap(_ => this.log(`updated restaurant id=${restaurant.id}`)),
+    //   tap(_ => console.log('test')),
+    //   catchError(this.handleError<any>('removeReview'))
+    // );
+    return this.http.delete(url);
   }
 
   /* GET restaurants whose name contains search term */
@@ -100,7 +120,6 @@ export class ReviewService {
   
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-  
       // TODO: better job of transforming error for user consumption
       //this.log(`${operation} failed: ${error.message}`);
   

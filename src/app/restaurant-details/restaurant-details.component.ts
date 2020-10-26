@@ -55,7 +55,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
   getReviewsforRestaurant():void {
     let restaurant = this.restaurant;
-    this.reviewService.getReviewsforRestaurant(restaurant).subscribe(reviews => { this.reviews = reviews; });
+    this.reviewService.getReviewsforRestaurant(restaurant).subscribe(reviews => { this.reviews = reviews; console.log('reviews: ' + JSON.stringify(this.reviews))});
   }
 
   // HOW to get Reviewer?

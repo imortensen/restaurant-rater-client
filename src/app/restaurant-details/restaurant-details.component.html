@@ -10,10 +10,10 @@
         <li class="list-group-item list-group-item-action flex-column align-items-start active card card-body">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{review.stars}}</h5>
-              <small>{{review.createdDate | date:"MM/dd/yy"}}</small>
+              <small>{{review.updatedAt | date:"MM/dd/yy"}}</small>
             </div>
             <p class="mb-1">{{review.comment}}</p>
-            <small>{{review.reviewer}}</small>
+            <small>{{review.createdBy.username}}</small>
         </li>
     </div>
     <p></p>

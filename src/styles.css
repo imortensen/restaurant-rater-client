@@ -6,6 +6,10 @@
     margin: 2em;
 }
 
+.btn{
+  margin-right: 5px;
+}
+
 .btn-primary{
   background-color: #47A0FF;
   border-color: #47A0FF;

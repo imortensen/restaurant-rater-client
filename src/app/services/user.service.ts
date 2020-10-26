@@ -16,7 +16,7 @@ export class UserService {
     constructor(private http: HttpClient) { }
     
     register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+        return this.http.post(`${environment.apiUrl}/signup`, user);
     }
 
     getReviewer(id: string): Observable<User> {
