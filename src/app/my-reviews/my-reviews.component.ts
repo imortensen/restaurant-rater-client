@@ -19,11 +19,6 @@ export class MyReviewsComponent implements OnInit {
   sortedReviews;
 
   constructor( private reviewService: ReviewService) { 
-    // this.sortedReviews = this.reviews.map((review) => ({
-    //   ..._.pick(review, ['stars', 'updatedAt']),
-    //   restaurant: _.get(review, 'restaurant.name')
-    // }));
-    // this.sortedReviews =this.sortedReviews.slice();
   }
 
   ngOnInit(): void {

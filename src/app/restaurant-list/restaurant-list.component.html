@@ -1,7 +1,7 @@
 <h2>Restaurants</h2>
 <br>
 
-<div class="form-group">
+<!-- <div class="form-group">
   <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" autocomplete="off" />
 </div>
 
@@ -9,7 +9,27 @@
   <a *ngFor="let restaurant of restaurants | filter:searchText" class="list-group-item list-group-item-action" routerLink="/restaurant/{{restaurant._id}}">
   {{ restaurant.name }}
   </a>
+</div> -->
+
+<div class="card">
+  <table matSort (matSortChange)="sortData($event)" class="table">
+  <thead class="table-light">
+    <tr>
+      <th mat-sort-header="restaurant">Restaurant</th>
+      <th mat-sort-header="stars">Stars</th>
+      <th  mat-sort-header="reviews">Reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let restaurant of restaurants" class="table-light">
+      <td><a routerLink="/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
+      <td>{{restaurant.stars}}</td>
+      <td>{{restaurant.reviews}}</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+
 
 <br>
 <button type="button" class="btn btn-primary btn-sm" routerLink="/add-restaurant">Add Restaurant</button>

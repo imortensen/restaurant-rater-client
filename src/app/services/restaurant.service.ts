@@ -24,8 +24,8 @@ export class RestaurantService {
 
   getRestaurants(): Observable<Restaurant[]> {
     this.messageService.add('RestaurantService: fetched restaurants');
-    console.log('test: ' + this.http.get<Restaurant[]>(this.restaurantsUrl))
-    return this.http.get<Restaurant[]>(this.restaurantsUrl)
+    const url = `${this.restaurantsUrl}/reviews`;
+    return this.http.get<Restaurant[]>(url)
       .pipe(
         // tap(.subscribe((v) => console.log('got new heroes list: ', v))),
         // tap(_ => console.log('fetched restaurants')),
