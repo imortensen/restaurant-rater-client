@@ -1,4 +1,4 @@
-<form [formGroup]="addRestaurantForm" (ngSubmit)="add()">
+<!-- <form [formGroup]="addRestaurantForm" (ngSubmit)="add()">
 
     <div class="form-group">
         <label for="name">Name</label>
@@ -9,3 +9,34 @@
 
 </form>
 
+<br>
+<br> -->
+
+<form [formGroup]="findRestaurantForm" (ngSubmit)="findRestaurant()">
+  <div class="form-group">
+    <label for="keyword">Keyword</label>
+    <input id="keyword" type="text" class="form-control" formControlName="keyword">
+  </div>
+  <button type="submit" class="btn btn-primary btn-sm">Search</button>
+  <br>
+  <br>
+  <div class="card">
+    <table class="table">
+    <thead class="table-light">
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Add</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let gRestaurant of googleRestaurants" class="table-light">
+        <td>{{gRestaurant.name}}</td>
+        <td>{{gRestaurant.vicinity}}</td>
+        <td><button type="button" (click)="add(gRestaurant)" class="btn btn-primary btn-sm">Add</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+</form>

@@ -16,6 +16,7 @@
   <thead class="table-light">
     <tr>
       <th mat-sort-header="restaurant">Restaurant</th>
+      <th>Location</th>
       <th mat-sort-header="stars">Stars</th>
       <th  mat-sort-header="reviews">Reviews</th>
     </tr>
@@ -23,6 +24,7 @@
   <tbody>
     <tr *ngFor="let restaurant of restaurants" class="table-light">
       <td><a routerLink="/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
+      <td>{{restaurant.vicinity}}</td>
       <td>{{restaurant.stars}}</td>
       <td>{{restaurant.reviews}}</td>
     </tr>

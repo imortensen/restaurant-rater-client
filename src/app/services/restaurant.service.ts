@@ -43,7 +43,7 @@ export class RestaurantService {
     );
   }
 
-  addRestaurant (restaurant: Restaurant): Observable<Restaurant> {
+  addRestaurant (restaurant: any): Observable<Restaurant> {
     const url = `${this.restaurantsUrl}`;
     return this.http.post<Restaurant>(url, restaurant, this.httpOptions).pipe(
       //tap((newRestaurant: Restaurant) => this.log(`added restaurant w/ id=${newRestaurant.id}`)),
