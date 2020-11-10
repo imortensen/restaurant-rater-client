@@ -36,4 +36,19 @@ export class AuthenticationService {
          localStorage.removeItem('currentUser');
          this.currentUserSubject.next(null);
      }
+
+     postGoogleLogin( socialData:any) {
+        // console.log('social data: ' + JSON.stringify(socialData, null, '\t'))
+        console.log('auth token: ' + socialData.authToken)
+        const accessToken = { access_token: socialData.authToken}
+        // remove user from local storage and set current user to null
+        return this.http.post<any>(`${environment.apiUrl}/oauth/google`, accessToken)
+            .pipe(map(user => {
+                //store user info and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+                return user;
+            }))
+        // return this.http.get(`${environment.apiUrl}/api/restaurant`)
+    }
 }

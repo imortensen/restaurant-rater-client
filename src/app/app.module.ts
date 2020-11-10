@@ -25,6 +25,11 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+
+import {
+  GoogleLoginProvider
+} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -53,11 +58,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Ng2SearchPipeModule,
     BarRatingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    SocialLoginModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '859271856157-j82hrobufiarmuti4078elhrechovr8n.apps.googleusercontent.com'
+            ),
+          }
+        ],
+      } as SocialAuthServiceConfig,
+    }
+    
   ],
   bootstrap: [AppComponent]
 })
