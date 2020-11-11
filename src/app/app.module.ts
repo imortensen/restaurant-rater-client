@@ -30,6 +30,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 import {
   GoogleLoginProvider
 } from 'angularx-social-login';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {
     LoginComponent,
     AlertComponent,
     AddReviewComponent,
-    MyReviewsComponent
+    MyReviewsComponent,
+    HomeComponent
   ],
   imports: [
     HttpClientModule,

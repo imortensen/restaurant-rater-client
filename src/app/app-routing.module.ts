@@ -10,11 +10,13 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { MyReviewsComponent } from './my-reviews/my-reviews.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'restaurant-list', component: RestaurantListComponent, canActivate: [AuthGuard] },
   { path: 'restaurant/:id', component: RestaurantDetailsComponent, canActivate: [AuthGuard] },
   { path: 'add-restaurant', component: AddRestaurantComponent, canActivate: [AuthGuard] },
@@ -22,7 +24,7 @@ const routes: Routes = [
   { path: 'add-review', component: AddReviewComponent, canActivate: [AuthGuard] },
   { 
     path: '',
-    redirectTo: '/restaurant-list',
+    redirectTo: '/home',
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },

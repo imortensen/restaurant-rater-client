@@ -21,6 +21,7 @@ export class RestaurantDetailsComponent implements OnInit {
   review: Review;
   reviewsCount: number;
   user: User;
+  placeUrl: 'https://www.google.com/maps/place/?q=place_id:'; 
 
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +42,7 @@ export class RestaurantDetailsComponent implements OnInit {
     // Route parameters are always strings. The JavaScript (+) operator converts the string to a number, which is what a hero id should be.
     //const id = +this.route.snapshot.paramMap.get('id');
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.getRestaurant(id).subscribe(restaurant => { this.restaurant = restaurant; this.getReviewforCurrentUser() });
+    this.service.getRestaurant(id).subscribe(restaurant => { this.restaurant = restaurant; console.log('restaurant: ' + JSON.stringify(this.restaurant)); this.getReviewforCurrentUser() });
   }
 
   getReviewforCurrentUser():void {
@@ -57,13 +58,6 @@ export class RestaurantDetailsComponent implements OnInit {
     let restaurant = this.restaurant;
     this.reviewService.getReviewsforRestaurant(restaurant).subscribe(reviews => { this.reviews = reviews; console.log('reviews: ' + JSON.stringify(this.reviews))});
   }
-
-  // HOW to get Reviewer?
-  // getReviewer(reviewer) {
-  //   let user = this.userService.getReviewer(reviewer.toString());
-  //   this.userService.getReviewer(reviewer.toString()).subscribe(user => { this.user = user });
-  //   return user.username;
-  // }
 
   goBack() {
     this.router.navigate(['/restaurant-list']);

@@ -1,5 +1,7 @@
 <div *ngIf="restaurant">
-	<h2> {{restaurant.name}} </h2>
+    <h2> {{restaurant.name}} </h2>
+    <h3><a href="{{'https://www.google.com/maps/place/?q=place_id:' + restaurant.place_id }}" target="_blank">{{restaurant.vicinity}}</a></h3>
+    
     <bar-rating [(rate)]="restaurant.stars" [max]="5" [theme]="'default'" [title]="restaurant.stars" [readOnly]="true"></bar-rating>
     <!-- <p> Review Count: {{restaurant.ratings}} </p> -->
 
@@ -13,7 +15,8 @@
               <small>{{review.updatedAt | date:"MM/dd/yy"}}</small>
             </div>
             <p class="mb-1">{{review.comment}}</p>
-            <small>{{review.createdBy.username}}</small>
+            <small *ngIf="review.createdBy.local">{{review.createdBy.local.username}}</small>
+            <small *ngIf="review.createdBy.google">{{review.createdBy.google.name}}</small>
         </li>
     </div>
     <p></p>
