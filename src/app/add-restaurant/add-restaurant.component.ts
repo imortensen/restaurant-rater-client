@@ -53,7 +53,7 @@ export class AddRestaurantComponent {
     })
   }
 
-  goBack() {
+  goBack(): void {
     this.router.navigate(['/restaurant-list'])
   }
 }
