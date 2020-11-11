@@ -1,32 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { faBell, faSearch, faUser, faUtensils } from '@fortawesome/free-solid-svg-icons';
-import { User } from '../user';
-import { Router } from '@angular/router';
-import { AuthenticationService } from '../services/authentication.service';
+import { Component } from '@angular/core'
+import {
+  faBell,
+  faSearch,
+  faUser,
+  faUtensils,
+} from '@fortawesome/free-solid-svg-icons'
+import { User } from '../user'
+import { Router } from '@angular/router'
+import { AuthenticationService } from '../services/authentication.service'
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent {
-  faSearch = faSearch;
-  faBell = faBell;
-  faUser = faUser;
-  faUtensils = faUtensils;
-  currentUser: User;
+  faSearch = faSearch
+  faBell = faBell
+  faUser = faUser
+  faUtensils = faUtensils
+  currentUser: User
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    }
-
-
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
+    this.authenticationService.currentUser.subscribe(
+      (x) => (this.currentUser = x)
+    )
   }
 
+  logout(): void {
+    this.authenticationService.logout()
+    this.router.navigate(['/login'])
+  }
 }

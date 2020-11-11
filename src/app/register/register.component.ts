@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthenticationService } from '../services/authentication.service';
-import { UserService } from '../services/user.service';
-import { first } from 'rxjs/operators';
-import { AlertService } from '../services/alert.service';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { AuthenticationService } from '../services/authentication.service'
+import { UserService } from '../services/user.service'
+import { first } from 'rxjs/operators'
+import { AlertService } from '../services/alert.service'
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
-  loading = false;
-  submitted = false;
+  registerForm: FormGroup
+  loading = false
+  submitted = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,47 +22,46 @@ export class RegisterComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private alertService: AlertService
-  ) { 
+  ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/'])
     }
   }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({ 
+    this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(5)]]
-    }
-    )
+      password: ['', [Validators.required, Validators.minLength(5)]],
+    })
   }
 
   register() {
-    this.submitted = true;
+    this.submitted = true
 
     // reset alerts on submit
-    this.alertService.clear();
+    this.alertService.clear()
 
-    console.log("register method hit");
+    console.log('register method hit')
     //do not continue if invalid form
     if (this.registerForm.invalid) {
-      return;
+      return
     }
 
-    this.loading = true;
-    this.userService.register(this.registerForm.value)
+    this.loading = true
+    this.userService
+      .register(this.registerForm.value)
       .pipe(first())
       .subscribe(
-        data => {
-          this.router.navigate(['/login']);
+        (data) => {
+          this.router.navigate(['/login'])
         },
-        error => {
-          this.loading = false;
-          console.log('Error:', error);
-          this.alertService.error(error);
+        (error) => {
+          this.loading = false
+          console.log('Error:', error)
+          this.alertService.error(error)
         }
-    );
+      )
   }
-
 }

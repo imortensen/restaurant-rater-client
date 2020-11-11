@@ -1,87 +1,82 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs'
+import { catchError, map, tap } from 'rxjs/operators'
 
-import { Restaurant } from '../restaurant';
-import { MessageService } from '../message.service';
-import { environment } from '@environments/environment';
+import { Restaurant } from '../restaurant'
+import { environment } from '@environments/environment'
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestaurantService {
-  private restaurantsUrl = `${environment.apiUrl}/api/restaurant`;
+  private restaurantsUrl = `${environment.apiUrl}/api/restaurant`
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  }
 
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService,
-    ) { }
+  constructor(private http: HttpClient) {}
 
   getRestaurants(): Observable<Restaurant[]> {
-    this.messageService.add('RestaurantService: fetched restaurants');
-    const url = `${this.restaurantsUrl}/reviews`;
-    return this.http.get<Restaurant[]>(url)
-      .pipe(
-        // tap(.subscribe((v) => console.log('got new heroes list: ', v))),
-        // tap(_ => console.log('fetched restaurants')),
-        //console.log('fetched restaurants')
-        catchError(this.handleError<Restaurant[]>('getRestaurant', []))
-      );
+    const url = `${this.restaurantsUrl}/reviews`
+    return this.http.get<Restaurant[]>(url).pipe(
+      // tap(.subscribe((v) => console.log('got new heroes list: ', v))),
+      // tap(_ => console.log('fetched restaurants')),
+      //console.log('fetched restaurants')
+      catchError(this.handleError<Restaurant[]>('getRestaurant', []))
+    )
   }
 
   getRestaurant(id: string): Observable<Restaurant> {
-    this.messageService.add(`Restaurant Service: fetched restaurant id=${id}`);
-    const url = `${this.restaurantsUrl}/${id}`;
+    const url = `${this.restaurantsUrl}/${id}`
     return this.http.get<Restaurant>(url).pipe(
       //tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Restaurant>(`getRestaurant id=${id}`))
-    );
+    )
   }
 
-  addRestaurant (restaurant: any): Observable<Restaurant> {
-    const url = `${this.restaurantsUrl}`;
+  addRestaurant(restaurant: any): Observable<Restaurant> {
+    const url = `${this.restaurantsUrl}`
     return this.http.post<Restaurant>(url, restaurant, this.httpOptions).pipe(
       //tap((newRestaurant: Restaurant) => this.log(`added restaurant w/ id=${newRestaurant.id}`)),
       catchError(this.handleError<Restaurant>('addRestaurant'))
-    );
+    )
   }
 
-  updateRestaurant (restaurant: Restaurant): Observable<any> {
-    return this.http.put(this.restaurantsUrl, restaurant, this.httpOptions).pipe(
-      //tap(_ => this.log(`updated restaurant id=${restaurant.id}`)),
-      catchError(this.handleError<any>('updateRestaurant'))
-    );
+  updateRestaurant(restaurant: Restaurant): Observable<any> {
+    return this.http
+      .put(this.restaurantsUrl, restaurant, this.httpOptions)
+      .pipe(
+        //tap(_ => this.log(`updated restaurant id=${restaurant.id}`)),
+        catchError(this.handleError<any>('updateRestaurant'))
+      )
   }
 
   /* GET restaurants whose name contains search term */
   searchRestaurants(term: string): Observable<Restaurant[]> {
     if (!term.trim()) {
       // if not search term, return empty restaurant array.
-      return of([]);
+      return of([])
     }
-    return this.http.get<Restaurant[]>(`${this.restaurantsUrl}/?name=${term}`).pipe(
-      //tap(_ => this.log(`found heroes matching "${term}"`)),
-      catchError(this.handleError<Restaurant[]>('searcRestaurants', []))
-    );
+    return this.http
+      .get<Restaurant[]>(`${this.restaurantsUrl}/?name=${term}`)
+      .pipe(
+        //tap(_ => this.log(`found heroes matching "${term}"`)),
+        catchError(this.handleError<Restaurant[]>('searcRestaurants', []))
+      )
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-  
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-  
+      console.error(error) // log to console instead
+
       // TODO: better job of transforming error for user consumption
       //this.log(`${operation} failed: ${error.message}`);
-  
+
       // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+      return of(result as T)
+    }
   }
-  
 }
