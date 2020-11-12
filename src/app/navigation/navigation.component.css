@@ -5,3 +5,38 @@
 .utensils{
     size: 36px;
 }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover, a:active{
+    color:#47A0FF;
+}
+
+.navigation-items{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+mat-toolbar{
+    border-radius: 3px;
+    color: #4931EB;
+    background: #4931EB;
+}
+
+li{
+    color: white;
+}
+
+li:hover{
+    color: #47A0FF;
+}
+
+@media(max-width: 959px){
+    mat-toolbar{
+        border-radius: 0px;
+    }
+}

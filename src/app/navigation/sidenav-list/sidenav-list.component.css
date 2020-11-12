@@ -1,0 +1,18 @@
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:hover, a:active{
+  color:#47A0FF;
+}
+
+.nav-caption{
+  display: inline-block;
+  padding-left: 6px;
+  color: white;
+}
+
+.nav-caption:hover{
+  color: #47A0FF;
+}

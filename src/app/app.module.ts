@@ -5,10 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { Ng2SearchPipeModule } from 'ng2-search-filter'
 import { BarRatingModule } from 'ngx-bar-rating'
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { NavigationComponent } from './navigation/navigation.component'
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component'
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component'
@@ -36,6 +38,7 @@ import { HomeComponent } from './home/home.component'
   declarations: [
     AppComponent,
     NavigationComponent,
+    SidenavListComponent,
     RestaurantListComponent,
     PageNotFoundComponent,
     RestaurantDetailsComponent,
@@ -60,6 +63,7 @@ import { HomeComponent } from './home/home.component'
     BarRatingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FlexLayoutModule,
     SocialLoginModule,
   ],
   providers: [

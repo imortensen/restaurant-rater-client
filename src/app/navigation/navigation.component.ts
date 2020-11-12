@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 import {
   faBell,
   faSearch,
@@ -15,6 +15,8 @@ import { AuthenticationService } from '../services/authentication.service'
   styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent {
+  @Output() public sidenavToggle = new EventEmitter()
+
   faSearch = faSearch
   faBell = faBell
   faUser = faUser
@@ -33,5 +35,9 @@ export class NavigationComponent {
   logout(): void {
     this.authenticationService.logout()
     this.router.navigate(['/login'])
+  }
+
+  public onToggleSidenav = () => {
+    this.sidenavToggle.emit()
   }
 }
