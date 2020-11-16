@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "tsc --noEmit && eslint . --ext js,ts,json --quiet --fix",
@@ -29,6 +29,7 @@
     "angular-popper": "^2.0.1",
     "angularx-social-login": "^3.3.1",
     "bootstrap": "^4.5.3",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
     "lodash": "^4.17.20",
     "ng2-search-filter": "^0.5.1",
@@ -36,6 +37,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
+    "typescript": "~4.0.3",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -65,5 +67,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.3"
+  },
+  "engines": {
+    "node": "12.14.1",
+    "npm": "6.14.6"
   }
 }
