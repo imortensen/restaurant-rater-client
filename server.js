@@ -2,16 +2,23 @@
 const express = require('express')
 const path = require('path')
 
+import { environment } from './environments/environment'
+
 const app = express()
+
+// Redirect to https
+if (environment.production) {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`)
+    else next()
+  })
+}
 
 // Serve only the static files form the dist directory
 app.use(express.static('./dist/my-app'))
-// app.use(express.static(__dirname + '/dist/restaurant-rater-client'))
 
 app.get('/*', function (req, res) {
-  // res.sendFile(
-  //   path.join(__dirname + '/dist/restaurant-rater-client/index.html')
-  // )
   res.sendFile('index.html', { root: 'dist/my-app' })
 })
 
