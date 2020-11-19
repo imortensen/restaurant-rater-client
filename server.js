@@ -1,18 +1,18 @@
 //Install express server
 const express = require('express')
 const path = require('path')
-const environment = require ('./src/environments/environment')
+// const environment = require ('./src/environments/environment')
 
 const app = express()
 
 // Redirect to https
-if (environment.production) {
-  app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https')
-      res.redirect(`https://${req.header('host')}${req.url}`)
-    else next()
-  })
-}
+// if (environment.production) {
+app.use((req, res, next) => {
+  if (req.header('x-forwarded-proto') !== 'https')
+    res.redirect(`https://${req.header('host')}${req.url}`)
+  else next()
+})
+// }
 
 // Serve only the static files form the dist directory
 app.use(express.static('./dist/my-app'))
