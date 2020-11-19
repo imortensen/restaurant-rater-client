@@ -1,8 +1,7 @@
 //Install express server
 const express = require('express')
 const path = require('path')
-
-import { environment } from './environments/environment'
+const environment = require('./environments/environment')
 
 const app = express()
 
